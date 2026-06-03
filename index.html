@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Primary meta -->
+  <title>Swamp City — Indie Arcade Game Studio | Electric Crust: Galactic Pizza Delivery</title>
+  <meta name="description" content="Swamp City is an independent game studio in Arkansas building tight, replayable retro arcade games. Our debut title, Electric Crust: Galactic Pizza Delivery, is coming to mobile, PC, and console." />
+  <meta name="author" content="Swamp City LLC" />
+  <meta name="theme-color" content="#0a1614" />
+  <link rel="canonical" href="https://swampcityrecs.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Swamp City" />
+  <meta property="og:title" content="Swamp City — Indie Arcade Game Studio" />
+  <meta property="og:description" content="An independent game studio building tight, replayable retro arcade games. Debut title: Electric Crust: Galactic Pizza Delivery." />
+  <meta property="og:url" content="https://swampcityrecs.com/" />
+  <meta property="og:locale" content="en_US" />
+  <!-- TODO: add a 1200x630 PNG at /og-image.png and uncomment -->
+  <!-- <meta property="og:image" content="https://swampcityrecs.com/og-image.png" /> -->
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Swamp City — Indie Arcade Game Studio" />
+  <meta name="twitter:description" content="An independent game studio building tight, replayable retro arcade games. Debut title: Electric Crust: Galactic Pizza Delivery." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Chakra+Petch:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:        #08110f;
+      --bg-2:      #0c1a17;
+      --ink:       #e7fbf4;
+      --ink-dim:   #8fb3aa;
+      --cyan:      #7df9ff; /* Tier 1 */
+      --purple:    #b44dff; /* Tier 2 */
+      --orange:    #ff6b35; /* Tier 3 */
+      --line:      rgba(125, 249, 255, 0.14);
+      --display:   "Press Start 2P", monospace;
+      --body:      "Chakra Petch", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Drifting starfield (space-shooter motion) */
+    #stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+    /* CRT scanlines + vignette overlay */
+    body::after {
+      content: "";
+      position: fixed; inset: 0; z-index: 2; pointer-events: none;
+      background:
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.16) 0 1px, transparent 1px 3px),
+        radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 100%);
+      mix-blend-mode: multiply;
+    }
+
+    .wrap { position: relative; z-index: 1; max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- NAV ---------- */
+    nav {
+      position: relative; z-index: 3;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 24px; max-width: 1040px; margin: 0 auto;
+    }
+    .brand {
+      font-family: var(--display); font-size: 13px; letter-spacing: 1px;
+      color: var(--cyan); text-decoration: none;
+      text-shadow: 0 0 10px rgba(125,249,255,0.6);
+    }
+    .nav-links { display: flex; gap: 26px; }
+    .nav-links a {
+      color: var(--ink-dim); text-decoration: none; font-size: 0.82rem;
+      text-transform: uppercase; letter-spacing: 2px; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* ---------- HERO ---------- */
+    header.hero {
+      min-height: 86vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+      padding: 60px 24px;
+    }
+    .marquee {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 7vw, 4.4rem);
+      line-height: 1.15; letter-spacing: 2px; color: #fff;
+      text-shadow:
+        0 0 7px var(--cyan), 0 0 18px rgba(125,249,255,0.7),
+        0 0 38px rgba(125,249,255,0.35);
+      animation: flicker 6s infinite;
+    }
+    @keyframes flicker {
+      0%, 92%, 100% { opacity: 1; }
+      93% { opacity: .72; } 94% { opacity: 1; } 96% { opacity: .85; }
+    }
+    .tagline {
+      margin-top: 26px; font-size: clamp(1rem, 2.4vw, 1.5rem);
+      color: var(--ink); max-width: 34ch; font-weight: 500;
+    }
+    .sub {
+      margin-top: 14px; color: var(--ink-dim); max-width: 52ch;
+      font-size: 1.02rem;
+    }
+    .cta-row { margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      font-family: var(--display); font-size: 0.66rem; letter-spacing: 1px;
+      padding: 16px 22px; text-decoration: none; text-transform: uppercase;
+      border: 2px solid var(--cyan); color: var(--cyan); background: transparent;
+      transition: all .2s; box-shadow: inset 0 0 0 rgba(125,249,255,0);
+    }
+    .btn:hover { background: var(--cyan); color: var(--bg); box-shadow: 0 0 24px rgba(125,249,255,0.55); }
+    .btn.ghost { border-color: var(--ink-dim); color: var(--ink-dim); }
+    .btn.ghost:hover { border-color: var(--ink); color: var(--ink); background: transparent; box-shadow: none; }
+
+    /* ---------- SECTIONS ---------- */
+    section { padding: 80px 0; border-top: 1px solid var(--line); }
+    .eyebrow {
+      font-family: var(--display); font-size: 0.62rem; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 18px;
+    }
+    .eyebrow.cyan   { color: var(--cyan); }
+    .eyebrow.purple { color: var(--purple); }
+    .eyebrow.orange { color: var(--orange); }
+    h2 { font-family: var(--display); font-size: clamp(1.1rem, 3.2vw, 1.7rem); line-height: 1.4; margin-bottom: 22px; }
+    section p { color: var(--ink-dim); max-width: 60ch; font-size: 1.05rem; }
+    section p + p { margin-top: 16px; }
+
+    .game {
+      margin-top: 30px; padding: 30px; border: 1px solid var(--line);
+      border-left: 3px solid var(--purple);
+      background: linear-gradient(180deg, rgba(180,77,255,0.05), transparent);
+    }
+    .platforms { margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .chip {
+      font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase;
+      padding: 7px 13px; border: 1px solid var(--line); color: var(--ink-dim);
+    }
+
+    /* ---------- MEDIA / IN ACTION ---------- */
+    .video-frame {
+      margin-top: 28px; position: relative; aspect-ratio: 16 / 9;
+      border: 1px solid var(--line); border-top: 3px solid var(--cyan);
+      background: var(--bg-2); overflow: hidden;
+    }
+    .video-frame video, .video-frame iframe { width: 100%; height: 100%; display: block; border: 0; object-fit: cover; }
+
+    .stills {
+      margin-top: 18px; display: grid; gap: 14px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 640px) { .stills { grid-template-columns: 1fr; } }
+    .stills img {
+      width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block;
+      border: 1px solid var(--line);
+    }
+
+    /* Placeholder tile shown until real media is dropped in */
+    .placeholder {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      width: 100%; height: 100%; aspect-ratio: 16 / 9;
+      color: var(--ink-dim); font-family: var(--display); font-size: 0.6rem;
+      letter-spacing: 1px; line-height: 1.8; padding: 16px;
+      background:
+        repeating-linear-gradient(45deg, rgba(125,249,255,0.04) 0 12px, transparent 12px 24px);
+      border: 1px dashed var(--line);
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 24px; }
+    @media (max-width: 640px) { .contact-grid { grid-template-columns: 1fr; } }
+    .mail {
+      font-family: var(--display); font-size: 0.8rem; color: var(--orange);
+      text-decoration: none; text-shadow: 0 0 12px rgba(255,107,53,0.5);
+      word-break: break-all;
+    }
+    .mail:hover { text-decoration: underline; }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      padding: 50px 24px; text-align: center; border-top: 1px solid var(--line);
+      color: var(--ink-dim); font-size: 0.85rem;
+    }
+    footer .tm { margin-top: 10px; font-size: 0.78rem; opacity: 0.7; }
+
+    /* ---------- reveal on scroll ---------- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .marquee { animation: none; }
+      #stars { display: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <nav>
+    <a class="brand" href="/">SWAMP CITY</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#game">The Game</a>
+      <a href="#media">In Action</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1 class="marquee">SWAMP&nbsp;CITY</h1>
+    <p class="tagline">Small games. Big arcade energy.</p>
+    <p class="sub">An independent game studio building tight, replayable games with a retro soul.</p>
+    <div class="cta-row">
+      <a class="btn" href="#game">See the game</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="about" class="reveal">
+      <p class="eyebrow cyan">// About</p>
+      <h2>About Swamp City</h2>
+      <p>Swamp City is a small independent game studio based in Northwest Arkansas. We make compact, replayable games built around feel — tight controls, honest difficulty, and a love of the arcade era.</p>
+      <p>We're a tiny team focused on doing a few things really well.</p>
+    </section>
+
+    <section id="game" class="reveal">
+      <p class="eyebrow purple">// Now in development</p>
+      <h2>Electric Crust: Galactic Pizza Delivery</h2>
+      <div class="game">
+        <p>Our debut title is a retro side-scrolling space shooter. Pilot Ace blasts through a 15-stage campaign — asteroid fields, neon nebulas, enemy fleets — delivering pizza for Chef Rex across the galaxy. Tiered boss battles, warp mechanics, and a climbing rank system keep every run fresh.</p>
+        <div class="platforms">
+          <span class="chip">iOS</span>
+          <span class="chip">Android</span>
+          <span class="chip">Steam</span>
+          <span class="chip">Xbox</span>
+          <span class="chip">PlayStation</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="media" class="reveal">
+      <p class="eyebrow cyan">// In action</p>
+      <h2>See it in motion</h2>
+      <p>Gameplay footage and screenshots from the campaign.</p>
+
+      <!-- FEATURED VIDEO -->
+      <!-- Drop a web-optimized clip at media/gameplay.mp4 + a poster frame at
+           media/gameplay-poster.jpg, then delete the placeholder div below and
+           uncomment the <video> block. (For a longer trailer, use the YouTube
+           embed option instead — see README.) -->
+      <div class="video-frame">
+        <div class="placeholder">GAMEPLAY REEL<br>COMING SOON</div>
+
+        <!--
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="media/gameplay-poster.jpg">
+          <source src="media/gameplay.webm" type="video/webm" />
+          <source src="media/gameplay.mp4"  type="video/mp4" />
+        </video>
+        -->
+
+        <!-- YouTube option (swap in instead of <video> for a longer trailer):
+        <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+                title="Electric Crust gameplay" loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        -->
+      </div>
+
+      <!-- STILLS -->
+      <!-- Drop screenshots at media/shot-1.webp ... media/shot-4.webp, then
+           delete the placeholder divs and uncomment the matching <img> tags. -->
+      <div class="stills">
+        <div class="placeholder">SCREENSHOT 1</div>
+        <div class="placeholder">SCREENSHOT 2</div>
+        <div class="placeholder">SCREENSHOT 3</div>
+        <div class="placeholder">SCREENSHOT 4</div>
+
+        <!--
+        <img src="media/shot-1.webp" alt="Ace dodging fire in an asteroid field" loading="lazy" />
+        <img src="media/shot-2.webp" alt="A Tier 2 boss encounter in a neon nebula" loading="lazy" />
+        <img src="media/shot-3.webp" alt="Warp transition between stages" loading="lazy" />
+        <img src="media/shot-4.webp" alt="Victory screen with rank readout" loading="lazy" />
+        -->
+      </div>
+    </section>
+
+    <section id="contact" class="reveal">
+      <p class="eyebrow orange">// Contact</p>
+      <h2>Get in touch</h2>
+      <div class="contact-grid">
+        <div>
+          <p>For business inquiries, press, or partnership opportunities:</p>
+          <p style="margin-top:18px"><a class="mail" href="mailto:Charles@swampcityrecs.com">Charles@swampcityrecs.com</a></p>
+        </div>
+        <div>
+          <p><strong style="color:var(--ink)">Swamp City LLC</strong></p>
+          <p>Northwest Arkansas</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 Swamp City LLC</div>
+    <div class="tm">Electric Crust: Galactic Pizza Delivery is a trademark of Swamp City LLC.</div>
+  </footer>
+
+  <script>
+    // Lightweight drifting starfield — parallax stars scrolling left, like the game.
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      var c = document.getElementById('stars');
+      var ctx = c.getContext('2d');
+      var stars = [];
+      function size() { c.width = innerWidth; c.height = innerHeight; }
+      function seed() {
+        stars = [];
+        var n = Math.min(160, Math.floor(innerWidth * innerHeight / 9000));
+        for (var i = 0; i < n; i++) {
+          stars.push({
+            x: Math.random() * c.width,
+            y: Math.random() * c.height,
+            z: Math.random() * 0.8 + 0.2,
+          });
+        }
+      }
+      function tick() {
+        ctx.clearRect(0, 0, c.width, c.height);
+        for (var i = 0; i < stars.length; i++) {
+          var s = stars[i];
+          s.x -= s.z * 0.45;
+          if (s.x < 0) { s.x = c.width; s.y = Math.random() * c.height; }
+          ctx.globalAlpha = s.z;
+          ctx.fillStyle = s.z > 0.75 ? '#7df9ff' : '#cfeee9';
+          ctx.fillRect(s.x, s.y, s.z * 2, s.z * 2);
+        }
+        requestAnimationFrame(tick);
+      }
+      size(); seed(); tick();
+      addEventListener('resize', function () { size(); seed(); });
+    })();
+
+    // Reveal sections on scroll
+    (function () {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('in'); });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
