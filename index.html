@@ -227,6 +227,12 @@
       color: var(--ink-dim); font-size: 0.85rem;
     }
     footer .tm { margin-top: 10px; font-size: 0.78rem; opacity: 0.7; }
+    .foot-link {
+      color: var(--ink-dim); text-decoration: none;
+      text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;
+      transition: color .2s;
+    }
+    .foot-link:hover { color: var(--cyan); }
 
     /* ---------- reveal on scroll ---------- */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s; }
@@ -324,7 +330,8 @@
   </main>
 
   <footer>
-    <div>© 2026 Swamp City LLC</div>
+    <div><a class="foot-link" href="/privacy/">Privacy Policy</a></div>
+    <div style="margin-top:14px">© 2026 Swamp City LLC</div>
     <div class="tm">Electric Crust: Galactic Pizza Delivery is a trademark of Swamp City LLC.</div>
   </footer>
 

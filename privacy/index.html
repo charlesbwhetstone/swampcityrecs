@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Privacy Policy — Swamp City | Electric Crust: Galactic Pizza Delivery</title>
+  <meta name="description" content="Privacy Policy for Swamp City LLC and Electric Crust: Galactic Pizza Delivery. We collect no personal data through our website or our game — no accounts, analytics, advertising, cookies, or tracking." />
+  <meta name="author" content="Swamp City LLC" />
+  <meta name="theme-color" content="#0a1614" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://swampcityrecs.com/privacy/" />
+
+  <style>
+    /* Self-hosted fonts — no third-party CDN, no external requests.
+       Press Start 2P & Chakra Petch are SIL Open Font License (self-hosting permitted). */
+    @font-face {
+      font-family: "Press Start 2P";
+      font-style: normal; font-weight: 400; font-display: swap;
+      src: url("/assets/fonts/press-start-2p-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Chakra Petch";
+      font-style: normal; font-weight: 400; font-display: swap;
+      src: url("/assets/fonts/chakra-petch-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Chakra Petch";
+      font-style: normal; font-weight: 500; font-display: swap;
+      src: url("/assets/fonts/chakra-petch-500.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Chakra Petch";
+      font-style: normal; font-weight: 700; font-display: swap;
+      src: url("/assets/fonts/chakra-petch-700.woff2") format("woff2");
+    }
+
+    :root {
+      --bg:        #08110f;
+      --bg-2:      #0c1a17;
+      --ink:       #e7fbf4;
+      --ink-dim:   #8fb3aa;
+      --cyan:      #7df9ff;
+      --purple:    #b44dff;
+      --orange:    #ff6b35;
+      --line:      rgba(125, 249, 255, 0.14);
+      --display:   "Press Start 2P", monospace;
+      --body:      "Chakra Petch", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--body);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+    body::after {
+      content: "";
+      position: fixed; inset: 0; z-index: 2; pointer-events: none;
+      background:
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.16) 0 1px, transparent 1px 3px),
+        radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 100%);
+      mix-blend-mode: multiply;
+    }
+
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- NAV ---------- */
+    nav {
+      position: relative; z-index: 3;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 24px; max-width: 1040px; margin: 0 auto;
+    }
+    .brand {
+      font-family: var(--display); font-size: 13px; letter-spacing: 1px;
+      color: var(--cyan); text-decoration: none;
+      text-shadow: 0 0 10px rgba(125,249,255,0.6);
+    }
+    .nav-links { display: flex; gap: 26px; }
+    .nav-links a {
+      color: var(--ink-dim); text-decoration: none; font-size: 0.82rem;
+      text-transform: uppercase; letter-spacing: 2px; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+
+    /* ---------- DOC HEADER ---------- */
+    header.doc {
+      position: relative; z-index: 1;
+      padding: 56px 24px 10px; text-align: center; max-width: 820px; margin: 0 auto;
+    }
+    .eyebrow {
+      font-family: var(--display); font-size: 0.62rem; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 18px; color: var(--cyan);
+    }
+    header.doc h1 {
+      font-family: var(--display); font-size: clamp(1.2rem, 4vw, 2rem);
+      line-height: 1.35; color: #fff;
+      text-shadow: 0 0 7px var(--cyan), 0 0 18px rgba(125,249,255,0.55);
+    }
+    header.doc .who { margin-top: 18px; color: var(--ink); font-weight: 500; font-size: 1.05rem; }
+    header.doc .dates {
+      margin-top: 10px; color: var(--ink-dim); font-size: 0.9rem;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    /* ---------- POLICY BODY ---------- */
+    main.policy { padding: 30px 0 20px; }
+    .lede {
+      margin: 0 0 10px; padding: 20px 22px;
+      border: 1px solid var(--line); border-left: 3px solid var(--purple);
+      background: linear-gradient(180deg, rgba(180,77,255,0.06), transparent);
+      color: var(--ink); font-size: 1.05rem;
+    }
+    main.policy h2 {
+      font-family: var(--display); font-size: clamp(0.9rem, 2.6vw, 1.15rem);
+      line-height: 1.4; color: var(--cyan); margin: 46px 0 16px;
+      padding-top: 26px; border-top: 1px solid var(--line);
+    }
+    main.policy h3 {
+      font-size: 1.05rem; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--orange); margin: 26px 0 12px;
+    }
+    main.policy p { color: var(--ink-dim); margin-bottom: 14px; }
+    main.policy ul { list-style: none; margin: 0 0 16px; padding: 0; }
+    main.policy li {
+      color: var(--ink-dim); position: relative; padding-left: 22px; margin-bottom: 12px;
+    }
+    main.policy li::before {
+      content: "▸"; position: absolute; left: 0; top: 0; color: var(--purple);
+    }
+    main.policy strong { color: var(--ink); }
+    main.policy a {
+      color: var(--cyan); text-decoration: none; border-bottom: 1px solid var(--line);
+    }
+    main.policy a:hover { border-bottom-color: var(--cyan); }
+    main.policy code {
+      font-family: var(--display); font-size: 0.72em;
+      color: var(--ink); background: var(--bg-2);
+      padding: 2px 6px; border: 1px solid var(--line); border-radius: 3px;
+    }
+    .contact-card {
+      margin-top: 18px; padding: 20px 22px;
+      border: 1px solid var(--line); border-left: 3px solid var(--orange);
+      background: linear-gradient(180deg, rgba(255,107,53,0.05), transparent);
+    }
+    .contact-card .mail {
+      font-family: var(--display); font-size: 0.8rem; color: var(--orange);
+      text-decoration: none; border: 0;
+      text-shadow: 0 0 12px rgba(255,107,53,0.5); word-break: break-all;
+    }
+    .contact-card .mail:hover { text-decoration: underline; }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      position: relative; z-index: 1;
+      padding: 50px 24px; text-align: center; border-top: 1px solid var(--line);
+      color: var(--ink-dim); font-size: 0.85rem; margin-top: 40px;
+    }
+    .foot-link {
+      color: var(--ink-dim); text-decoration: none;
+      text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;
+      transition: color .2s;
+    }
+    .foot-link:hover { color: var(--cyan); }
+    footer .tm { margin-top: 10px; font-size: 0.78rem; opacity: 0.7; }
+
+    @media (prefers-reduced-motion: reduce) {
+      #stars { display: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <nav>
+    <a class="brand" href="/">SWAMP CITY</a>
+    <div class="nav-links">
+      <a href="/">← Home</a>
+    </div>
+  </nav>
+
+  <header class="doc">
+    <p class="eyebrow">// Legal</p>
+    <h1>Privacy Policy</h1>
+    <p class="who">Swamp City LLC · Electric Crust: Galactic Pizza Delivery</p>
+    <p class="dates">Effective June 14, 2026 · Last updated June 14, 2026</p>
+  </header>
+
+  <main class="policy wrap">
+    <h2>Introduction &amp; scope</h2>
+    <p>Swamp City LLC ("we," "us," or "our") is an independent game and music studio based in Northwest Arkansas, USA. This Privacy Policy covers our website, swampcityrecs.com, and our game <em>Electric Crust: Galactic Pizza Delivery</em>, across the platforms it ships on (iOS, Android, Steam, Xbox, and PlayStation).</p>
+    <p class="lede"><strong>We collect no personal data — through our website or our game.</strong> No accounts, no analytics, no advertising, no cookies, no tracking, and no third-party data sharing. The game keeps your data on your device. The detail follows.</p>
+
+    <h2>Information we collect</h2>
+
+    <h3>On the website (swampcityrecs.com)</h3>
+    <ul>
+      <li>The site is a static page — no accounts, sign-up, forms, or store. The only interaction is a <code>mailto:</code> contact link, which opens your own email app; we don't capture your address through the site.</li>
+      <li>We <strong>self-host all assets</strong> — fonts, styles, scripts, and gameplay videos are served from our own site. No third-party CDNs, font services, or video platforms receive your information.</li>
+      <li>We use <strong>no analytics, no advertising, no cookies, and no tracking pixels.</strong></li>
+      <li>Like every website, ours is delivered by a web host (GitHub Pages). To send you a page, the host's servers necessarily receive standard request data such as your IP address. <strong>We do not collect, access, or use this data</strong> — it is handled by the host under its own privacy policy, as is true for any website you visit.</li>
+    </ul>
+
+    <h3>In the game (Electric Crust: Galactic Pizza Delivery)</h3>
+    <ul>
+      <li><strong>No account and no personal information</strong> is collected or transmitted. The game never asks for your name, email, or contact details.</li>
+      <li><strong>On-device data only.</strong> Your progress, high scores, and settings are saved locally on your device (encrypted at rest) and are never sent to us or to third parties. There are no online leaderboards, no cloud saves, and no accounts. Deleting the game removes this data.</li>
+      <li><strong>Device identifiers.</strong> The game may read an operating-system-provided identifier (for example, Apple's Identifier for Vendor) locally so the game can function; it is never transmitted to us or to third parties. We do not use advertising identifiers (the IDFA or Android Advertising ID), and we do not track you across other apps.</li>
+      <li><strong>No analytics, crash-reporting, or advertising SDKs are active in the game.</strong> If we add any in a future version, we will update this policy and the applicable App Store and Google Play data disclosures before doing so.</li>
+      <li><strong>In-app purchases.</strong> The game may offer optional purchases (for example, to remove ads), processed entirely by the platform (Apple, Google, etc.) — not by us. We never receive or store your payment information. The game keeps only a simple, non-personal record on your device that a purchase was made (for example, an "ad-free" flag).</li>
+      <li><strong>Store platforms.</strong> The Apple App Store, Google Play, Steam, Xbox, and PlayStation handle your information under their own privacy policies. We may receive only aggregate, non-identifying information (for example, download counts) — never your personal account details.</li>
+    </ul>
+
+    <h2>How we use information</h2>
+    <p>Because we don't collect personal data, we don't use it for profiling, advertising, or sale. On-device game data exists only to run the game on your device.</p>
+
+    <h2>Third-party services</h2>
+    <p>We don't use third parties that collect your personal data for us. The platforms that distribute the game and the host that serves the site operate under their own privacy policies: GitHub Pages (hosting), the Apple App Store, Google Play, Steam, Xbox, and PlayStation. We do not share your data with third parties for their own marketing.</p>
+
+    <h2>Cookies &amp; tracking</h2>
+    <p>We use no cookies and no tracking technologies — on the website or in the game. If we ever introduce them, we'll update this policy and provide any required notice or controls before they go live.</p>
+
+    <h2>Children's privacy (COPPA)</h2>
+    <p>We care about the privacy of children. Because the website and game collect no personal information from anyone, they collect none from children. We do not knowingly collect personal information from children under 13 (or the equivalent minimum age in your jurisdiction). If you believe a child has somehow provided us personal information, please contact us.</p>
+
+    <h2>Your rights (GDPR / CCPA)</h2>
+    <p>Because we do not collect or hold personal data about you, there is nothing for us to access, correct, port, delete, or sell on your behalf. You remain in full control of the game's on-device data: you can clear it at any time by deleting the game. If you are in the EU/UK (GDPR) or California (CCPA/CPRA), you have rights to access, delete, and opt out of the sale of personal information; we hold no personal data to act on, and we do not sell personal information.</p>
+
+    <h2>Data retention</h2>
+    <p>We retain no personal data, because we collect none. On-device game data persists on your device until you delete the game. Standard request logs are retained by our web host under its own policy, not ours.</p>
+
+    <h2>International transfers</h2>
+    <p>Our web host (GitHub) is US-based and may process the standard request data described above in the United States or elsewhere, under its own safeguards. We ourselves transfer no personal data, because we collect none.</p>
+
+    <h2>Security</h2>
+    <p>On-device game saves are encrypted. Because we operate no servers that gather your personal data, there is no central store of personal information to be breached. No method of transmission or storage is ever completely secure, but the absence of collected data means there is correspondingly little to protect on our end.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>We may update this Privacy Policy from time to time — for example, if the website or game's features change. When we do, we'll revise the "Last updated" date above and post the new version on this page. Material changes (such as introducing analytics or advertising) will be reflected here before those features go live.</p>
+
+    <h2>Contact us</h2>
+    <p>If you have any questions about this Privacy Policy, you can reach us at:</p>
+    <div class="contact-card">
+      <p><strong>Swamp City LLC</strong></p>
+      <p style="margin:6px 0"><a class="mail" href="mailto:Charles@swampcityrecs.com">Charles@swampcityrecs.com</a></p>
+      <p style="margin:0"><a href="/">swampcityrecs.com</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <div><a class="foot-link" href="/">← Back to Swamp City</a></div>
+    <div style="margin-top:14px">© 2026 Swamp City LLC</div>
+    <div class="tm">Electric Crust: Galactic Pizza Delivery is a trademark of Swamp City LLC.</div>
+  </footer>
+
+  <script>
+    // Lightweight drifting starfield — matches the home page.
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      var c = document.getElementById('stars');
+      var ctx = c.getContext('2d');
+      var stars = [];
+      function size() { c.width = innerWidth; c.height = innerHeight; }
+      function seed() {
+        stars = [];
+        var n = Math.min(160, Math.floor(innerWidth * innerHeight / 9000));
+        for (var i = 0; i < n; i++) {
+          stars.push({
+            x: Math.random() * c.width,
+            y: Math.random() * c.height,
+            z: Math.random() * 0.8 + 0.2,
+          });
+        }
+      }
+      function tick() {
+        ctx.clearRect(0, 0, c.width, c.height);
+        for (var i = 0; i < stars.length; i++) {
+          var s = stars[i];
+          s.x -= s.z * 0.45;
+          if (s.x < 0) { s.x = c.width; s.y = Math.random() * c.height; }
+          ctx.globalAlpha = s.z;
+          ctx.fillStyle = s.z > 0.75 ? '#7df9ff' : '#cfeee9';
+          ctx.fillRect(s.x, s.y, s.z * 2, s.z * 2);
+        }
+        requestAnimationFrame(tick);
+      }
+      size(); seed(); tick();
+      addEventListener('resize', function () { size(); seed(); });
+    })();
+  </script>
+</body>
+</html>
