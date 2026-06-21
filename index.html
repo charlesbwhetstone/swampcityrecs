@@ -296,12 +296,40 @@
       <h2>See it in motion</h2>
       <p>Gameplay footage and screenshots from the campaign.</p>
 
-      <!-- FEATURED VIDEO -->
+      <!-- FEATURED VIDEOS -->
       <div class="video-frame">
-        <video id="reel" autoplay muted loop playsinline preload="metadata" poster="media/gameplay-poster.jpg">
+        <video class="reel" muted loop playsinline preload="none" poster="media/MainMenu-poster.jpg">
+          <source src="media/MainMenu.mp4" type="video/mp4" />
+        </video>
+        <button class="sound-toggle" type="button" aria-label="Turn sound on">Sound off</button>
+      </div>
+
+      <div class="video-frame">
+        <video class="reel" muted loop playsinline preload="none" poster="media/AceTakingOffCinematic-poster.jpg">
+          <source src="media/AceTakingOffCinematic.mp4" type="video/mp4" />
+        </video>
+        <button class="sound-toggle" type="button" aria-label="Turn sound on">Sound off</button>
+      </div>
+
+      <div class="video-frame">
+        <video class="reel" muted loop playsinline preload="none" poster="media/gameplay-poster.jpg">
           <source src="media/gameplay.mp4" type="video/mp4" />
         </video>
-        <button id="reel-sound" class="sound-toggle" type="button" aria-label="Turn sound on">Sound off</button>
+        <button class="sound-toggle" type="button" aria-label="Turn sound on">Sound off</button>
+      </div>
+
+      <div class="video-frame">
+        <video class="reel" muted loop playsinline preload="none" poster="media/BossBattle-poster.jpg">
+          <source src="media/BossBattle.mp4" type="video/mp4" />
+        </video>
+        <button class="sound-toggle" type="button" aria-label="Turn sound on">Sound off</button>
+      </div>
+
+      <div class="video-frame">
+        <video class="reel" muted loop playsinline preload="none" poster="media/BaddiesCinematic-poster.jpg">
+          <source src="media/BaddiesCinematic.mp4" type="video/mp4" />
+        </video>
+        <button class="sound-toggle" type="button" aria-label="Turn sound on">Sound off</button>
       </div>
 
       <!-- STILLS -->
@@ -379,16 +407,14 @@
       document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
     })();
 
-    // Sound toggle for the gameplay reel (autoplay is muted; click to enable audio)
+    // Featured reels: autoplay muted only while in view (saves bandwidth/CPU),
+    // and a per-clip sound toggle. Unmuting one clip mutes all the others.
     (function () {
-      var v = document.getElementById('reel');
-      var b = document.getElementById('reel-sound');
-      if (!v || !b) return;
-      b.addEventListener('click', function () {
-        v.muted = !v.muted;
-        if (!v.muted) {
-          v.volume = 0.8;
-          v.play();
+      var reels = [].slice.call(document.querySelectorAll('.reel'));
+      if (!reels.length) return;
+
+      function setButton(b, on) {
+        if (on) {
           b.textContent = 'Sound on';
           b.classList.add('on');
           b.setAttribute('aria-label', 'Turn sound off');
@@ -397,7 +423,44 @@
           b.classList.remove('on');
           b.setAttribute('aria-label', 'Turn sound on');
         }
+      }
+
+      reels.forEach(function (v) {
+        var b = v.parentNode.querySelector('.sound-toggle');
+        if (!b) return;
+        b.addEventListener('click', function () {
+          var enabling = v.muted;
+          if (enabling) {
+            // Mute every other reel and reset its button.
+            reels.forEach(function (other) {
+              if (other === v) return;
+              other.muted = true;
+              var ob = other.parentNode.querySelector('.sound-toggle');
+              if (ob) setButton(ob, false);
+            });
+            v.muted = false;
+            v.volume = 0.8;
+            v.play();
+          } else {
+            v.muted = true;
+          }
+          setButton(b, enabling);
+        });
       });
+
+      // Play a clip only while it is on screen; pause it when it scrolls away.
+      var vio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var v = e.target;
+          if (e.isIntersecting) {
+            if (v.preload === 'none') v.preload = 'metadata';
+            v.play().catch(function () {});
+          } else {
+            v.pause();
+          }
+        });
+      }, { threshold: 0.4 });
+      reels.forEach(function (v) { vio.observe(v); });
     })();
   </script>
 </body>
