@@ -1,0 +1,4 @@
+# Files in the repo that Cloudflare should NOT serve as part of the site.
+wrangler.jsonc
+.assetsignore
+README.md
