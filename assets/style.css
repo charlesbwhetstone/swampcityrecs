@@ -79,7 +79,27 @@
       text-transform: uppercase; letter-spacing: 2px; transition: color .2s;
     }
     .nav-links a:hover { color: var(--cyan); }
-    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* ---------- MOBILE MENU ---------- */
+    .menu-btn {
+      display: none;
+      background: transparent; border: 1px solid var(--line); color: var(--ink);
+      font-family: var(--display); font-size: 0.62rem; letter-spacing: 1px;
+      padding: 9px 13px; cursor: pointer; text-transform: uppercase;
+    }
+    .menu-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+    @media (max-width: 640px) {
+      .menu-btn { display: inline-block; }
+      .nav-links {
+        display: none; position: absolute; right: 24px; top: 66px; z-index: 20;
+        flex-direction: column; gap: 0; min-width: 190px;
+        background: var(--bg-2); border: 1px solid var(--line);
+        box-shadow: 0 14px 34px rgba(0,0,0,0.45); padding: 8px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 10px; }
+      .nav-links a + a { border-top: 1px solid var(--line); }
+    }
 
     /* ---------- HERO ---------- */
     header.hero {
