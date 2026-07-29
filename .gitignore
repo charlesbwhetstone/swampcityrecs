@@ -16,3 +16,8 @@ ehthumbs.db
 
 # Claude Code local config
 .claude/
+
+# Local test tooling (not part of the deployed site)
+node_modules/
+package.json
+package-lock.json
