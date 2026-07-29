@@ -8,3 +8,14 @@
   # Enforcing: this site loads no third-party scripts today. If that
   # changes (analytics, embeds, etc.) widen script-src/frame-src first.
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
+
+# Shared CSS/JS changes on nearly every deploy now that the site spans
+# multiple pages. No explicit rule here meant browsers and Cloudflare's edge
+# were free to cache these under default heuristics, so a change like the
+# mobile menu fix could silently fail to appear for a repeat visitor whose
+# browser was still holding an older cached copy from before that file
+# existed. no-cache does not disable caching, it forces a fast revalidation
+# check (ETag/Last-Modified) before ever reusing a cached copy, so an
+# unchanged file still loads from cache but a changed one is never stale.
+/assets/*
+  Cache-Control: no-cache
