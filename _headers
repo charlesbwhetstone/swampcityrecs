@@ -19,3 +19,13 @@
 # unchanged file still loads from cache but a changed one is never stale.
 /assets/*
   Cache-Control: no-cache
+
+# Same reasoning applies to media. Gameplay clips and screenshots get
+# replaced in place, keeping the same filename with entirely different
+# content, so there is no URL change to signal staleness. Today's swap
+# took MainMenu.mp4 from 743KB to 7.6MB under the identical name, which
+# under default heuristics a repeat visitor's browser could keep serving
+# from cache indefinitely. Revalidation on these is cheap next to the
+# cost of showing months-old footage.
+/media/*
+  Cache-Control: no-cache
