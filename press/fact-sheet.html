@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fact Sheet — Electric Crust: Galactic Pizza Delivery</title>
+<meta name="description" content="Fact sheet for Electric Crust: Galactic Pizza Delivery, from Swamp City LLC." />
+<link rel="stylesheet" href="/assets/style.css?v=2" />
+<style>
+    .wrap.narrow { max-width: 760px; }
+    .back { font-size: 0.8rem; color: var(--ink-dim); text-decoration: none; display: inline-block; margin: 40px 0 30px; }
+    .back:hover { color: var(--cyan); }
+
+    dl.facts { margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; }
+    @media (max-width: 560px) { dl.facts { grid-template-columns: 1fr; } }
+    .fact dt { font-family: var(--display); font-size: 0.58rem; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 5px; }
+    .fact dd { font-size: 0.98rem; color: var(--ink); }
+    .fact dd.pending { color: var(--orange); font-size: 0.82rem; }
+
+    .btn-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+    @media print {
+      body { background: #fff; color: #111; }
+      .back, .btn-row, footer a, nav { display: none; }
+      h1, h2, .marquee { color: #000; text-shadow: none; }
+      .eyebrow { color: #444; }
+      p, .fact dd { color: #222; }
+      .fact dt { color: #555; }
+      a.mail { color: #000; text-decoration: underline; }
+    }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="/">SWAMP CITY LLC</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#game">Electric Crust</a>
+    <a href="/press/">Press</a>
+    <a href="/#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="wrap narrow">
+
+  <a class="back" href="/press/">&larr; Back to press kit</a>
+
+  <p class="eyebrow">// Fact Sheet</p>
+  <h1 class="marquee" style="font-size: clamp(1.2rem, 4vw, 1.8rem);">ELECTRIC CRUST</h1>
+  <p class="tagline" style="text-align:left; margin-left:0;">Galactic Pizza Delivery — Swamp City LLC</p>
+
+  <section style="border-top:none; padding-top:30px;">
+    <p class="eyebrow">// Boilerplate</p>
+    <h2>Short description</h2>
+    <p>Electric Crust: Galactic Pizza Delivery is a retro side-scrolling arcade space shooter from Swamp City LLC. Players pilot Ace through a 15-stage campaign across asteroid fields, neon nebulas, and enemy fleets, delivering pizza for Chef Rex while battling tiered bosses, activating warp mechanics, and climbing a Federation rank ladder she'd rather not accept. Electric Crust launches on iOS and Android January 26, 2027, with Steam to follow.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">// Key Facts</p>
+    <h2>At a glance</h2>
+    <dl class="facts">
+      <div class="fact"><dt>Title</dt><dd>Electric Crust: Galactic Pizza Delivery</dd></div>
+      <div class="fact"><dt>Developer</dt><dd>Swamp City LLC (solo developer)</dd></div>
+      <div class="fact"><dt>Genre</dt><dd>Retro side-scrolling arcade space shooter</dd></div>
+      <div class="fact"><dt>Engine</dt><dd>Unity, 2D URP</dd></div>
+      <div class="fact"><dt>Platforms at launch</dt><dd>iOS, Android</dd></div>
+      <div class="fact"><dt>Planned platforms</dt><dd>Steam, Xbox, PlayStation</dd></div>
+      <div class="fact"><dt>Release date</dt><dd>January 26, 2027 (mobile)</dd></div>
+      <div class="fact"><dt>Price</dt><dd>Premium, one-time purchase. No ads, no IAP. Expected around $4.99 (mobile), $7.99–9.99 (Steam) — <span class="pending">subject to final confirmation</span></dd></div>
+      <div class="fact"><dt>Location</dt><dd>Northwest Arkansas, USA</dd></div>
+      <div class="fact"><dt>Playable demo</dt><dd><a class="mail" href="https://electriccrust.itch.io/electric-crust-galactic-pizza-delivery" target="_blank" rel="noopener">electriccrust.itch.io</a></dd></div>
+    </dl>
+    <div class="btn-row">
+      <a class="btn" href="https://electriccrust.itch.io/electric-crust-galactic-pizza-delivery" target="_blank" rel="noopener">Play the free demo</a>
+      <a class="btn orange" href="/press/">Full press kit</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div>Swamp City LLC — Northwest Arkansas</div>
+  <div style="margin-top:8px;">Press contact: <a class="mail" href="mailto:charles@swampcityrecs.com">charles@swampcityrecs.com</a></div>
+</footer>
+
+</body>
+</html>
