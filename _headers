@@ -9,6 +9,19 @@
   # changes (analytics, embeds, etc.) widen script-src/frame-src first.
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
 
+  # Pages themselves now change on most deploys, not just the shared assets
+  # below. Without a rule here the edge cached HTML under default heuristics,
+  # and the 2026-08-22 countdown deploy proved the failure mode: /index.html
+  # and /press/index.html served the new markup immediately while / and
+  # /press/ — the URLs every real visitor uses — kept serving the pre-merge
+  # copy until the cache was purged by hand. Scoped to /* rather than *.html
+  # because directory-style URLs have no .html to match on.
+  #
+  # Same reasoning as the asset rules: no-cache is not "do not cache", it
+  # forces an ETag/Last-Modified revalidation before a cached copy is reused,
+  # so unchanged pages still come from cache and changed ones are never stale.
+  Cache-Control: no-cache
+
 # Shared CSS/JS changes on nearly every deploy now that the site spans
 # multiple pages. No explicit rule here meant browsers and Cloudflare's edge
 # were free to cache these under default heuristics, so a change like the
