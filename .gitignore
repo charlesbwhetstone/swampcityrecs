@@ -21,3 +21,6 @@ ehthumbs.db
 node_modules/
 package.json
 package-lock.json
+
+# Wrangler local state
+.wrangler/

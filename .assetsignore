@@ -1,0 +1,17 @@
+# Files in the repo that Cloudflare should NOT serve as part of the site.
+wrangler.jsonc
+.assetsignore
+README.md
+CNAME
+.git/**
+.gitignore
+.github/**
+.wrangler/**
+node_modules/**
+.claude/**
+package.json
+package-lock.json
+src/**
+scripts/**
+.DS_Store
+**/.DS_Store
