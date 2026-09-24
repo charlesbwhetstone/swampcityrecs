@@ -146,6 +146,15 @@
     }
     .btn.btn-big:hover { background: #fff; border-color: #fff; color: var(--bg); transform: translateY(-2px);
       box-shadow: 0 0 26px rgba(125,249,255,0.75); }
+    /* Merch page: shorter hero so the store preview peeks above the fold */
+    header.hero.hero-short { min-height: 68vh; }
+    .store-peek {
+      display: block; margin-top: 24px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .store-peek img { display: block; width: 100%; height: auto; }
+    .store-peek:hover, .store-peek:focus-visible { border-color: var(--cyan); box-shadow: 0 0 24px rgba(125,249,255,0.35); transform: translateY(-2px); }
+    .peek-note { margin-top: 18px; color: var(--ink-dim); }
     .btn.ghost { border-color: var(--ink-dim); color: var(--ink-dim); }
     .btn.ghost:hover { border-color: var(--ink); color: var(--ink); background: transparent; box-shadow: none; }
 
