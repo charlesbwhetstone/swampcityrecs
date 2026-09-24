@@ -22,19 +22,24 @@ whose nav has more than a Home link (`privacy/` intentionally has only Home).
 - `robots.txt` / `sitemap.xml` — indexing. Add every new public page to the sitemap.
 - `CNAME` — custom domain `swampcityrecs.com` (don't delete)
 - `_headers` — **protected.** Security headers (including a strict CSP: scripts from `'self'` only)
-  and cache rules. This file is honored by Cloudflare Pages, not by GitHub Pages.
+  and cache rules. Applied when served by the Cloudflare Worker; ignored by GitHub Pages.
   Don't add third-party scripts or embeds without widening the CSP first, and treat
   any CSP change as a security change that needs review.
 
 ## Hosting and DNS
 - **DNS:** managed in Cloudflare. GoDaddy remains the registrar only, with nameservers pointed at Cloudflare.
-- **Hosting path: UNVERIFIED — confirm in Cloudflare dashboard.** The repo has GitHub Pages enabled,
-  and `_headers` implies Cloudflare Pages. Check which one actually serves the site:
-  `curl -sI https://swampcityrecs.com | grep -i -E 'server|content-security|cache-control'`
-  A `content-security-policy` header present means Cloudflare Pages (`_headers` is live).
-  Absent means GitHub Pages behind the Cloudflare proxy (`_headers` is inert). Update this section with the result.
+- **Hosting (migration in progress, 2026-09-24):** moving from GitHub Pages (behind the Cloudflare proxy, where
+  `_headers` is ignored) to a Cloudflare Worker with static assets, `swampcityrecs-site`, configured in `wrangler.jsonc`.
+  This is the same pattern as the other Worker sites. On Workers, `_headers` is applied.
+  - Until cutover, GitHub Pages still serves the site. Keep GitHub Pages enabled and keep `CNAME` as the rollback path.
+  - Deploy: `npx wrangler deploy` from the repo root. `.assetsignore` keeps repo-only files
+    (README, wrangler config, CNAME, .git) from being served.
+  - After cutover, update this section to say the Worker is live, with the date.
+  - Verify the serving path: `curl -sI https://swampcityrecs.com | grep -i content-security-policy`.
+    If the header is present, the Worker is serving and `_headers` is live.
 - **Records (names only; values live in Cloudflare):**
-  - apex `swampcityrecs.com` and `www` — the site
+  - apex `swampcityrecs.com` — Worker custom domain after cutover (GitHub Pages A records before)
+  - `www` — redirects to apex (Cloudflare redirect rule after cutover)
   - email — Cloudflare Email Routing (MX) plus SPF, DKIM, and DMARC TXT records
   - `shop` — planned CNAME → `shops.myshopify.com`, **DNS only (grey cloud)**, for the Shopify storefront
 
@@ -51,4 +56,4 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-Last verified: 2026-09-24 @ 7792534 (repo contents; hosting path not yet verified)
+Last verified: 2026-09-24 (repo contents; Worker config tested locally with `wrangler dev`, not yet deployed)

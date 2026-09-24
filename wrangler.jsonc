@@ -1,0 +1,12 @@
+{
+  // Serves swampcityrecs.com as a Worker with static assets (no Worker script).
+  // Same pattern as pinpairs-site. _headers in the repo root is applied by Workers.
+  "name": "swampcityrecs-site",
+  "compatibility_date": "2026-09-24",
+  "assets": {
+    "directory": ".",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  },
+  "workers_dev": true
+}
