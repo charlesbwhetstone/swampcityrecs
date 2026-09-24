@@ -28,20 +28,26 @@ whose nav has more than a Home link (`privacy/` intentionally has only Home).
 
 ## Hosting and DNS
 - **DNS:** managed in Cloudflare. GoDaddy remains the registrar only, with nameservers pointed at Cloudflare.
-- **Hosting (migration in progress, 2026-09-24):** moving from GitHub Pages (behind the Cloudflare proxy, where
-  `_headers` is ignored) to a Cloudflare Worker with static assets, `swampcityrecs-site`, configured in `wrangler.jsonc`.
-  This is the same pattern as the other Worker sites. On Workers, `_headers` is applied.
-  - Until cutover, GitHub Pages still serves the site. Keep GitHub Pages enabled and keep `CNAME` as the rollback path.
-  - Deploy: `npx wrangler deploy` from the repo root. `.assetsignore` keeps repo-only files
-    (README, wrangler config, CNAME, .git) from being served.
-  - After cutover, update this section to say the Worker is live, with the date.
+- **Hosting (Worker live since 2026-09-24):** Cloudflare Worker with static assets, `swampcityrecs-site`, configured
+  in `wrangler.jsonc` and attached to `swampcityrecs.com` as a Worker custom domain. This is the same pattern as the
+  other Worker sites. On Workers, `_headers` is applied. Videos are served from R2 (see Updating media).
+  - Deploy: `npx wrangler deploy` from the repo root, using wrangler's own login. Don't have `CF_API_TOKEN` or
+    `CLOUDFLARE_API_TOKEN` set in that shell, because wrangler will use it instead. `.assetsignore` keeps repo-only files
+    (README, wrangler config, CNAME, .git, src/, scripts/, .DS_Store) from being served.
+  - Rollback window: GitHub Pages stays enabled and `CNAME` stays in the repo until 2026-10-01, then disable GitHub
+    Pages. To roll back before then, remove the custom domain from the Worker and restore the four GitHub Pages
+    A records on the apex (`185.199.108-111.153`, proxied).
   - Verify the serving path: `curl -sI https://swampcityrecs.com | grep -i content-security-policy`.
     If the header is present, the Worker is serving and `_headers` is live.
 - **Records (names only; values live in Cloudflare):**
-  - apex `swampcityrecs.com` — Worker custom domain after cutover (GitHub Pages A records before)
-  - `www` — redirects to apex (Cloudflare redirect rule after cutover)
-  - email — Cloudflare Email Routing (MX) plus SPF, DKIM, and DMARC TXT records
-  - `shop` — planned CNAME → `shops.myshopify.com`, **DNS only (grey cloud)**, for the Shopify storefront
+  - apex `swampcityrecs.com`: Worker custom domain (Cloudflare-managed record)
+  - `www`: proxied placeholder `A 192.0.2.0`, plus a Single Redirect rule that sends a 301 to
+    `https://swampcityrecs.com` and preserves path and query
+  - email: Google (MX `smtp.google.com`) plus SPF, DKIM (`google._domainkey`), and DMARC TXT records
+  - `shop`: A record to the Fourthwall storefront, **DNS only (grey cloud)**; `support.shop` carries Fourthwall's
+    support-mail records (MX, SPF, DKIM, DMARC)
+  - The old GoDaddy webmail CNAME `email.swampcityrecs.com` was removed on 2026-09-24 because it could not serve
+    HTTPS under HSTS `includeSubDomains`.
 
 ## Updating media
 - Files in `media/` are replaced in place under the same filename. The `/media/*` no-cache rule in `_headers`

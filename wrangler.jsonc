@@ -20,5 +20,9 @@
   "rules": [
     { "type": "Text", "globs": ["**/_headers"], "fallthrough": true }
   ],
+  // Custom domain for the apex (www redirects to apex via a Cloudflare redirect rule).
+  "routes": [
+    { "pattern": "swampcityrecs.com", "custom_domain": true }
+  ],
   "workers_dev": true
 }
