@@ -1,12 +1,24 @@
 {
-  // Serves swampcityrecs.com as a Worker with static assets (no Worker script).
+  // Serves swampcityrecs.com as a Worker with static assets.
   // Same pattern as pinpairs-site. _headers in the repo root is applied by Workers.
+  // One exception: /media/*.mp4 runs src/worker.js first and streams from R2 so
+  // Range requests get 206 (static assets return the full file as 200).
   "name": "swampcityrecs-site",
+  "main": "src/worker.js",
   "compatibility_date": "2026-09-24",
   "assets": {
     "directory": ".",
+    "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "none"
+    "not_found_handling": "none",
+    "run_worker_first": ["/media/*.mp4"]
   },
+  "r2_buckets": [
+    { "binding": "MEDIA", "bucket_name": "swampcityrecs-media" }
+  ],
+  // Bundle _headers as text so the Worker can apply the same rules to video responses.
+  "rules": [
+    { "type": "Text", "globs": ["**/_headers"], "fallthrough": true }
+  ],
   "workers_dev": true
 }

@@ -11,3 +11,7 @@ node_modules/**
 .claude/**
 package.json
 package-lock.json
+src/**
+scripts/**
+.DS_Store
+**/.DS_Store

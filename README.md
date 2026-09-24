@@ -46,6 +46,10 @@ whose nav has more than a Home link (`privacy/` intentionally has only Home).
 ## Updating media
 - Files in `media/` are replaced in place under the same filename. The `/media/*` no-cache rule in `_headers`
   exists so repeat visitors revalidate instead of seeing stale clips.
+- **Videos (`media/*.mp4`) are served from R2** (bucket `swampcityrecs-media`) by `src/worker.js`, because Workers
+  static assets ignore Range requests and iOS Safari needs 206 responses. After adding or replacing a clip, run
+  `scripts/sync-media.sh` and then `npx wrangler deploy`. If a clip is missing from R2, the Worker falls back to the
+  static copy (full 200, no seeking).
 - Keep web clips short and compressed (roughly under 15–20 MB). Autoplay video must stay muted.
 - Screenshots: capture around 1600px wide and convert to WebP.
 - Long trailers belong on YouTube, not in the repo.
