@@ -31,9 +31,11 @@ whose nav has more than a Home link (`privacy/` intentionally has only Home).
 - **Hosting (Worker live since 2026-09-24):** Cloudflare Worker with static assets, `swampcityrecs-site`, configured
   in `wrangler.jsonc` and attached to `swampcityrecs.com` as a Worker custom domain. This is the same pattern as the
   other Worker sites. On Workers, `_headers` is applied. Videos are served from R2 (see Updating media).
-  - Deploy: `npx wrangler deploy` from the repo root, using wrangler's own login. Don't have `CF_API_TOKEN` or
-    `CLOUDFLARE_API_TOKEN` set in that shell, because wrangler will use it instead. `.assetsignore` keeps repo-only files
-    (README, wrangler config, CNAME, .git, src/, scripts/, .DS_Store) from being served.
+  - Deploy: automatic. Workers Builds (Cloudflare Git integration, connected 2026-09-25) runs `npx wrangler deploy`
+    on every push to `main`, with no build command, same as the other Worker sites. Manual fallback: `npx wrangler
+    deploy` from the repo root, using wrangler's own login, without `CF_API_TOKEN` or `CLOUDFLARE_API_TOKEN` set in that
+    shell (wrangler would use them instead). `.assetsignore` keeps repo-only files (README, wrangler config, CNAME, .git,
+    src/, scripts/, .DS_Store) from being served. New videos still need `scripts/sync-media.sh` (R2 is not in git).
   - Rollback window: GitHub Pages stays enabled and `CNAME` stays in the repo until 2026-10-01, then disable GitHub
     Pages. To roll back before then, remove the custom domain from the Worker and restore the four GitHub Pages
     A records on the apex (`185.199.108-111.153`, proxied).
@@ -66,4 +68,4 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-Last verified: 2026-09-24 (repo contents; Worker config tested locally with `wrangler dev`, not yet deployed)
+Last verified: 2026-09-25 (Worker deployed and serving swampcityrecs.com; Workers Builds connected to `main`)
