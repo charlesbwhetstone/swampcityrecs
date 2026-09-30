@@ -2,7 +2,7 @@
 Category: Website
 Stage: Live
 Health: On track
-Description: Swamp City LLC studio site with the merch page and privacy policy
+Description: Swamp City LLC studio site: merch page, press kit, and privacy policy
 Deadline: <YYYY-MM-DD, optional>
 Progress: <optional percent, for example 60%; otherwise milestones or stage are used>
 ## Working now
