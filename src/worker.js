@@ -23,6 +23,10 @@ export default {
       return env.ASSETS.fetch(request);
     }
 
+    // Branch previews use the checked-in copy without accessing production R2.
+    // Static assets return the full video; validate seeking on the production path.
+    if (env.STATIC_MEDIA_PREVIEW === "true") return env.ASSETS.fetch(request);
+
     const key = decodeURIComponent(url.pathname.slice(1)); // "media/Trailer.mp4"
     const meta = await env.MEDIA.head(key);
     if (!meta) {
