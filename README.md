@@ -63,6 +63,14 @@ whose nav has more than a Home link (`privacy/` intentionally has only Home).
 - Long trailers belong on YouTube, not in the repo.
 
 ## Local preview
+
+Cloudflare branch previews use `npx wrangler preview` and the `previews` settings
+in `wrangler.jsonc`. They serve checked-in videos through static assets without
+access to the production R2 bucket. Preview video responses are full `200`
+responses, so preview playback does not verify seeking or iOS Safari support.
+Production keeps the R2 binding and ranged responses. Run the local Worker
+regressions with `node --test scripts/test-worker.mjs`.
+
 ```
 python3 -m http.server 8000
 # open http://localhost:8000

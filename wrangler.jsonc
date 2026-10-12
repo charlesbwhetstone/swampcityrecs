@@ -16,6 +16,10 @@
   "r2_buckets": [
     { "binding": "MEDIA", "bucket_name": "swampcityrecs-media" }
   ],
+  // Branch previews serve checked-in media and do not bind the production R2 bucket.
+  "previews": {
+    "vars": { "STATIC_MEDIA_PREVIEW": "true" }
+  },
   // Bundle _headers as text so the Worker can apply the same rules to video responses.
   "rules": [
     { "type": "Text", "globs": ["**/_headers"], "fallthrough": true }
